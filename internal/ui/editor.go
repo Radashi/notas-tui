@@ -51,7 +51,7 @@ func NewEditor(manager *notes.Manager, note notes.Note, content string) Editor {
 	// Wrap de líneas
 	ta.SetWidth(80)
 	ta.SetHeight(20)
-	ta.ShowLineNumbers = true
+	ta.ShowLineNumbers = false
 
 	// ── Search input ──
 	si := textinput.New()

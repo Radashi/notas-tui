@@ -77,14 +77,18 @@ type Explorer struct {
 
 func NewExplorer(manager *notes.Manager) Explorer {
 	l := list.New([]list.Item{}, noteDelegate{}, 0, 0)
-	l.Title = "notas"
+	l.Title = "Notas"
 	l.SetShowStatusBar(true)
 	l.SetFilteringEnabled(true)
-	l.SetShowHelp(true)
 	l.Styles.Title = lipgloss.NewStyle().
 		Foreground(lipgloss.Color("12")).
 		Bold(true).
-		Padding(0, 1)
+		Padding(0, 0)
+	// Deshabilitar el help automático de bubbles/list
+	l.SetShowHelp(false)
+	// Quitar el padding del área de items
+	l.Styles.PaginationStyle = lipgloss.NewStyle().PaddingLeft(1)
+	l.Styles.HelpStyle = lipgloss.NewStyle() // vacío, ya deshabilitamos el help
 
 	ti := textinput.New()
 	ti.Placeholder = "nombre-de-la-nota"
@@ -122,7 +126,7 @@ func (e Explorer) Update(msg tea.Msg) (Explorer, tea.Cmd) {
 	case tea.WindowSizeMsg:
 		e.width = msg.Width
 		e.height = msg.Height
-		e.list.SetSize(msg.Width, msg.Height-4)
+		e.list.SetSize(msg.Width, msg.Height-1)
 
 	case NotesLoadedMsg:
 		items := make([]list.Item, len(msg.Notes))
@@ -248,9 +252,20 @@ func (e Explorer) View() string {
 func (e Explorer) viewList() string {
 	var b strings.Builder
 	b.WriteString(e.list.View())
+
+	// Tu statusbar personalizado
+	hintStyle := lipgloss.NewStyle().
+		Foreground(lipgloss.Color("8")).
+		PaddingLeft(1)
+
+	keys := []string{"↑↓ navegar", "Enter abrir", "n nueva", "d borrar", "/ buscar", "q salir"}
+	b.WriteString("\n" + hintStyle.Render(strings.Join(keys, "  ·  ")))
+
 	if e.err != nil {
-		b.WriteString("\n" + lipgloss.NewStyle().Foreground(lipgloss.Color("9")).Render("error: "+e.err.Error()))
+		errStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("9"))
+		b.WriteString("\n" + errStyle.Render("error: "+e.err.Error()))
 	}
+
 	return b.String()
 }
 

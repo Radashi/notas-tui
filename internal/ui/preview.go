@@ -27,24 +27,24 @@ func NewPreview(title, content string, width, height int) Preview {
 		height = 24
 	}
 
-	p := Preview{
-		title:  title,
-		width:  width,
-		height: height,
-	}
-
 	rendered := renderMarkdown(content, width)
 
 	vp := viewport.New(width, height-5)
 	vp.SetContent(rendered)
 
-	return p
+	return Preview{
+		viewport: vp,
+		title:    title,
+		width:    width,
+		height:   height,
+		ready:    true,
+	}
 }
 
 // Pasa el contenido por glamour y lo devuelve renderizado
 func renderMarkdown(content string, width int) string {
 	renderer, err := glamour.NewTermRenderer(
-		glamour.WithAutoStyle(),
+		glamour.WithStandardStyle("dark"),
 		glamour.WithWordWrap(width-4),
 	)
 	if err != nil {
