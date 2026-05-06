@@ -7,6 +7,7 @@ import (
 
 	"github.com/Radashi/notas-tui/internal/notes"
 	"github.com/Radashi/notas-tui/internal/ui"
+	"github.com/charmbracelet/bubbles/textarea"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -15,12 +16,14 @@ type screen int
 const (
 	screenExplorer screen = iota
 	screenEditor
+	screenPreview
 )
 
 type app struct {
 	screen   screen
 	explorer ui.Explorer
 	editor   ui.Editor
+	preview  ui.Preview
 	manager  *notes.Manager
 	width    int
 	height   int
@@ -57,6 +60,20 @@ func (a app) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// Recargar la lista por si cambió algo
 		return a, a.explorer.Init()
 
+	case ui.OpenPreviewMsg:
+		a.preview = ui.NewPreview(
+			a.editor.Note().Title,
+			msg.Content,
+			a.width,
+			a.height,
+		)
+		a.screen = screenPreview
+		return a, a.preview.Init()
+
+	case ui.ClosePreviewMsg:
+		a.screen = screenEditor
+		return a, textarea.Blink
+
 	case tea.WindowSizeMsg:
 		a.width = msg.Width
 		a.height = msg.Height
@@ -77,6 +94,8 @@ func (a app) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		a.explorer, cmd = a.explorer.Update(msg)
 	case screenEditor:
 		a.editor, cmd = a.editor.Update(msg)
+	case screenPreview:
+		a.preview, cmd = a.preview.Update(msg)
 	}
 	return a, cmd
 }
@@ -85,6 +104,8 @@ func (a app) View() string {
 	switch a.screen {
 	case screenEditor:
 		return a.editor.View()
+	case screenPreview:
+		return a.preview.View()
 	default:
 		return a.explorer.View()
 	}

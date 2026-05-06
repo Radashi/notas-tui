@@ -108,6 +108,8 @@ func (e Editor) Update(msg tea.Msg) (Editor, tea.Cmd) {
 		default:
 			return e.updateEditing(msg)
 		}
+	case ClosePreviewMsg:
+		return e, textarea.Blink
 	}
 
 	var cmd tea.Cmd
@@ -339,4 +341,8 @@ func highlightSearch(text, query string) string {
 		Foreground(lipgloss.Color("0")).
 		Render(query)
 	return strings.ReplaceAll(text, query, highlight)
+}
+
+func (e Editor) Note() notes.Note {
+	return e.note
 }

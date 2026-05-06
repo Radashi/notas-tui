@@ -16,6 +16,8 @@ func (e ErrMsg) Error() string { return e.Err.Error() }
 
 // internas (solo las usa el editor)
 type (
-	noteSavedMsg   struct{}
-	clearStatusMsg struct{}
+	noteSavedMsg    struct{}
+	clearStatusMsg  struct{}
+	closePreviewMsg struct{}
+	ClosePreviewMsg struct{}
 )
