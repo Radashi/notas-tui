@@ -33,8 +33,24 @@ Download the latest release from [GitHub Releases](https://github.com/Radashi/no
 ```
 
 ## Getting Started
+In the explorer
+> N - New note
+> D - Delete note
+> / - Search note
+> Enter - Open note
+> Down/Up - Select note
+> Q - Exit
 
-[Add instructions on how to use the application - keyboard shortcuts, basic workflow, etc.]
+In the editor
+> CTRL-S - Save note
+> CTRL-F - Search a word in the note
+> CTRL-P - Markdown preview
+> ESC - Exit (in case you didn't save you ill have a warning)
+
+In the preview
+> CTRL-P - Get back to editor
+> Q - Get back to explorer
+> Up/Down/PgUp/PgDn - Move the preview
 
 ## Requirements
 
