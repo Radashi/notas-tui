@@ -1,6 +1,6 @@
 # notas-tui
 
-A lightweight, terminal-based note-taking application built in Go with a beautiful TUI (Text User Interface). Take quick notes directly from your terminal with an intuitive and responsive design.
+A lightweight, terminal-based note-taking application built in Go with a beautiful TUI (Text User Interface). Take quick notes directly from your terminal with an intuitive and responsive design whitout the necessity to use your mouse.
 
 ![screenshot](screenshots/screenshot_markdown.png)
 
@@ -67,4 +67,4 @@ Or contact me. **yes i used copilot for this readme**
 
 ---
 
-Made with ❤️ by [Radashi](https://github.com/Radashi)
+Made by [Radashi](https://github.com/Radashi)
