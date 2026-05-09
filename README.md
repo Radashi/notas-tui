@@ -34,24 +34,24 @@ Download the latest release from [GitHub Releases](https://github.com/Radashi/no
 
 ## Getting Started
 In the explorer
-> N - New note
-> D - Delete note
-> / - Search note
-> Enter - Open note
-> Down/Up - Select note
-> Q - Exit
+- N - New note
+- D - Delete note
+- / - Search note
+- Enter - Open note
+- Down/Up - Select note 
+- Q - Exit
 
 In the editor
-> CTRL-S - Save note
-> CTRL-F - Search a word in the note
-> CTRL-P - Markdown preview
-> ESC - Exit (in case you didn't save you ill have a warning)
+- CTRL-S - Save note
+- CTRL-F - Search a word in the note
+- CTRL-P - Markdown preview
+- ESC - Exit (in case you didn't save you ill have a warning)
 
 In the preview
-> CTRL-P - Get back to editor
-> Q - Get back to explorer
-> Up/Down/PgUp/PgDn - Move the preview
-
+- CTRL-P - Get back to editor
+- Q - Get back to explorer
+- Up/Down/PgUp/PgDn - Move the preview
+  
 ## Requirements
 
 - Go 1.16 or higher (for building from source)
@@ -60,13 +60,10 @@ In the preview
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
-
-[Add your license information here]
-
 ## Support
 
 For issues, questions, or suggestions, please open an [issue](https://github.com/Radashi/notas-tui/issues).
+Or contact me. **yes i used copilot for this readme**
 
 ---
 
